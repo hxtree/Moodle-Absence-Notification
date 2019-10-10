@@ -1,3 +1,3 @@
 db.conf
 templates/*
-!example_10_day.json
+!templates/example_10_days.json
