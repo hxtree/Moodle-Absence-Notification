@@ -50,7 +50,8 @@ def main():
     )
     cursor = db.cursor(MySQLdb.cursors.DictCursor)
     
-    # update category and roles per your setup
+    category_id = config['moodle']['semester_category_id']
+
     query = "SELECT \
             `mdl_course`.`id` AS `course_id`, \
             `mdl_course`.`shortname` AS `course_name`, \
@@ -64,6 +65,13 @@ def main():
                 WHEN `mdl_role_assignments`.`roleid` = 5 THEN 'Student' \
                 WHEN `mdl_role_assignments`.`roleid` = 6 THEN 'Guest' \
                 WHEN `mdl_role_assignments`.`roleid` = 7 THEN 'Authenticated user' \
+                WHEN `mdl_role_assignments`.`roleid` = 8 THEN 'gc-faculty' \
+                WHEN `mdl_role_assignments`.`roleid` = 9 THEN 'View ALL without rights' \
+                WHEN `mdl_role_assignments`.`roleid` = 11 THEN 'Keyholder' \
+                WHEN `mdl_role_assignments`.`roleid` = 12 THEN 'Calendar editor' \
+                WHEN `mdl_role_assignments`.`roleid` = 13 THEN 'eSchool Administrator' \
+                WHEN `mdl_role_assignments`.`roleid` = 15 THEN 'Web Service' \
+                WHEN `mdl_role_assignments`.`roleid` = 16 THEN 'Course Observer' \
             END AS `role`, \
             TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`lastaccess`), NOW()) AS `days_since_access`, \
             FROM_UNIXTIME(`lastaccess`, '%m/%d/%Y') AS `last_access` \
@@ -75,7 +83,7 @@ def main():
         WHERE `mdl_context`.`contextlevel` = '50' \
         AND TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`lastaccess`), NOW()) > -1 \
         AND TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`lastaccess`), NOW()) < 60 \
-        AND `mdl_course`.`category` = 71 \
+        AND `mdl_course`.`category` = '" + category_id + "' \
         GROUP BY  `mdl_user`.`id`,`mdl_course`.`id` \
         ORDER BY `role`,`lastaccess` DESC"
     cursor.execute(query)
