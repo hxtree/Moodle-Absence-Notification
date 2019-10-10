@@ -65,13 +65,6 @@ def main():
                 WHEN `mdl_role_assignments`.`roleid` = 5 THEN 'Student' \
                 WHEN `mdl_role_assignments`.`roleid` = 6 THEN 'Guest' \
                 WHEN `mdl_role_assignments`.`roleid` = 7 THEN 'Authenticated user' \
-                WHEN `mdl_role_assignments`.`roleid` = 8 THEN 'gc-faculty' \
-                WHEN `mdl_role_assignments`.`roleid` = 9 THEN 'View ALL without rights' \
-                WHEN `mdl_role_assignments`.`roleid` = 11 THEN 'Keyholder' \
-                WHEN `mdl_role_assignments`.`roleid` = 12 THEN 'Calendar editor' \
-                WHEN `mdl_role_assignments`.`roleid` = 13 THEN 'eSchool Administrator' \
-                WHEN `mdl_role_assignments`.`roleid` = 15 THEN 'Web Service' \
-                WHEN `mdl_role_assignments`.`roleid` = 16 THEN 'Course Observer' \
             END AS `role`, \
             TIMESTAMPDIFF(DAY, FROM_UNIXTIME(`lastaccess`), NOW()) AS `days_since_access`, \
             FROM_UNIXTIME(`lastaccess`, '%m/%d/%Y') AS `last_access` \
