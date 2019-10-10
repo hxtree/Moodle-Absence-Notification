@@ -1,0 +1,8 @@
+{
+  "sender" : "you@example.com",
+  "cc" : "you@example.com",
+  "role" : "Student",
+  "days_since_access" : 10,
+  "subject" :  "Immediate Action Needed on Moodle",
+  "message" : "<p>Dear {first_name},</p><p>It’s been 10 days since you logged on to Moodle. Is everything alright? We've missed you in the following course(s):</p><ul>{course_links}</ul><p>You have seven days to respond to this message and build a plan make up for the missed time. We want to help you get back on track! Please reach out to your teachers right away.</p><p>All the best,<br/>Jane Doe</p>"
+}
