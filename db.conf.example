@@ -3,3 +3,5 @@ host = mysql.example.com
 user = example_user
 password = example_password
 db = moodle
+[moodle]
+semester_category_id = 83                                                                                                                                                                                    
